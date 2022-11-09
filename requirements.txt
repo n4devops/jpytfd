@@ -1,0 +1,12 @@
+Flask
+Flask-Compress
+Flask-SeaSurf
+gunicorn
+idna
+ipython-genutils
+Jinja2
+jsonschema
+jupyter-core
+pandas
+plotly
+seaborn
