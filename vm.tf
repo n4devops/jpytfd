@@ -1,5 +1,6 @@
 resource "aws_instance" "web" {
-    ami           = "ami-0e6329e222e662a52"
+    
+    ami           = "ami-062df10d14676e201"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.jenk-sg.id]
  
