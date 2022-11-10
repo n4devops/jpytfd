@@ -1,0 +1,23 @@
+
+pipeline {
+      agent  any
+       stages {
+              stage('Git CheckOut') {
+           steps {
+               script {
+                    def remote = [:]
+  remote.name = 'ubuntu'
+  remote.host = '3.110.147.9'
+ 
+  remote.allowAnyHosts = true
+withCredentials([usernamePassword(credentialsId: 'ec2juser', passwordVariable: 'ec2pass', usernameVariable: 'ec2user')]) {
+  remote.user = ec2user
+        remote.password = ec2pass
+    sshCommand remote: remote, command: "ls -lrt"
+    sshCommand remote: remote, command: "pwd && hostname"
+    sshCommand remote: remote, command: "mkdir repo1"
+    sshCommand remote: remote, command: "cd repo1 && git clone https://github.com/n4devops/jpytfd.git" 
+    sshCommand remote: remote, command: "cd repo1/jpytfd && sudo docker build -t sampledpyapp1 . && sudo docker run -d -p 9090:5000 sampledpyapp1"
+             }  }
+       }       }
+}}
